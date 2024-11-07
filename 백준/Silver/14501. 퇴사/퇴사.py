@@ -1,16 +1,20 @@
+# 백트래킹
+def dfs(n, sm) :
+    global ans
+    if n >= N : # 종료조건
+        ans = max(ans, sm)
+        return
+    if n + T[n] <= N : # 상담
+        dfs(n+T[n], sm+P[n])
+    dfs(n+1, sm)
+
 N = int(input())
-T = []
-P = []
-max_price = [0] * (N+1)
+T = [0] * N
+P = [0] * N
 
-for _ in range(N):
-    t, p = map(int, input().split())
-    T.append(t)
-    P.append(p)
+for i in range(N) :
+    T[i], P[i] = map(int, input().split())
 
-for i in range(N-1, -1, -1):
-    if T[i] + i > N : # 상담이 퇴사일을 넘기면 진행하지 않음.
-        max_price[i] = max_price[i+1]
-    else:
-        max_price[i] = max(max_price[i+1], P[i] + max_price[i + T[i]])
-print(max_price[0])
+ans = 0
+dfs(0, 0)
+print(ans)
