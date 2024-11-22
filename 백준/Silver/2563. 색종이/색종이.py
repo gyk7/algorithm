@@ -1,19 +1,14 @@
-
-n = int(input())
-graph = [[0]*101 for _ in range(101)]
-area = 0
-
-for _ in range(n) :
-    d1, d2 = map(int, input().split())
-    for i in range(1, 11):
-        for j in range(1, 11):
-            graph[d1+i][d2+j] = 1
+N = int(input())
+arr = [[0] * 102 for _ in range(102)]
+for _ in range(N) :
+    # [1] 해당 영역을 1로 표시
+    sj, si = map(int, input().split())
+    for i in range(si, si+10):
+        for j in range(sj, sj+10):
+            arr[i][j] = 1
             
-# for k in range(1, 100):
-#     for l in range(1, 100):
-#         if graph[k][l] != 0:
-#             area += 1
-
-for i in graph :
-    area += i.count(1)
-print(area)           
+    # [2] 1의 개수를 cnt -> 넓이
+    ans = 0
+    for lst in arr:
+        ans += sum(lst)
+print(ans)
