@@ -1,18 +1,21 @@
 li = []
+for _ in range(9) :
+    a = int(input())
+    li.append(a)
 
-for _ in range(9):
-    height = int(input())
-    li.append(height)
+sum = 0
+
+for i in range(9):
+    sum += li[i]
+
+
+d_li = []
+for j in range(0, 8) :
+    for k in range(j+1, 9) :
+        if li[j] + li[k] == sum - 100 :
+            d_li = [li[j], li[k]]
+li = set(li) - set(d_li)
+li = list(li)
 li.sort()
-# print(li)
-sum = sum(li)
-
-
-for i in range(8):
-    for j in range(i+1, 9) :
-       if li[i] + li[j] == sum - 100 :
-           rm_set = {li[i], li[j]}
-
-li = [k for k in li if k not in rm_set]
-for k in range(7) :
-    print(li[k])
+for p in range(7) :
+    print(li[p])
